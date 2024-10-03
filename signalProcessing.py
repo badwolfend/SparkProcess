@@ -35,7 +35,7 @@ def main(fname='05255_t1_int', fname_ps=None, typ='box', size=600, coords = (133
     (b, g, r) = ut.preProcess(f_name=f_name_h, med_ksize=19)
 
     # Resize Images #
-    # ut.plot_one_thing(g, "original", colorbar=True, plot_3d=False, to_show=False)
+    ut.plot_one_thing(g, "original", colorbar=True, plot_3d=False, to_show=False)
     
     coordsx = coords[0]
     coordsy = coords[1]
@@ -106,6 +106,7 @@ def main(fname='05255_t1_int', fname_ps=None, typ='box', size=600, coords = (133
     pdiffR = ut.rotate_im(p=pdiff, angle=angle)
     ut.plot_one_thing(pdiffR, "pdiff", colorbar=True, plot_3d=False, to_show=False, vmax=(-20, 12))
 
+    np.savez('Data/'+f_name+'_phasediff', pdiffR)
     np.savez('Data/'+f_name, pdiffR)
 
     # pdiffRLP = ut.gaussian_filter(pdiffR, sigma=6)
@@ -157,6 +158,20 @@ def main(fname='05255_t1_int', fname_ps=None, typ='box', size=600, coords = (133
 
 if __name__ == '__main__':
     # # coords in (row, column).
-    e_s, e_ps = main(fname='Quantaray/8_4_2023/shot1', fname_ps="Quantaray/8_4_2023/shot1", size=(1400, 3200),
-                    coords=(int(950), int(2000)), fftycoords=(int(1500), int(1550)), fftxcoords=(int(620), int(780)),
-                    not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+    # e_s, e_ps = main(fname='Quantaray/8_4_2023/shot1', fname_ps="Quantaray/8_4_2023/shot1", size=(1400, 3200),
+    #                 coords=(int(950), int(2000)), fftycoords=(int(1500), int(1550)), fftxcoords=(int(620), int(780)),
+    #                 not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+    # e_s, e_ps = main(fname='Quantaray/8_23_2024/shot0', fname_ps="Quantaray/8_23_2024/shot0", size=(936, 1732),
+    #                 coords=(int(1935), int(2793)), fftycoords=(int(790), int(840)), fftxcoords=(int(300), int(625)),
+    #                 not_horizontal=True, typ='box', angle=-10.0, downsamplef=1)
+    # e_s, e_ps = main(fname='Quantaray/8_23_2024/00249_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
+    #             coords=(int(2000), int(800)), fftycoords=(int(800), int(840)), fftxcoords=(int(300), int(625)),
+    #             not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+
+    # e_s, e_ps = main(fname='Quantaray/8_23_2024/00163_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
+    #         coords=(int(2000), int(800)), fftycoords=(int(800), int(840)), fftxcoords=(int(300), int(625)),
+    #         not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+
+      e_s, e_ps = main(fname='Quantaray/8_23_2024/00118_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
+            coords=(int(2000), int(800)), fftycoords=(int(810), int(830)), fftxcoords=(int(200), int(725)),
+            not_horizontal=True, typ='box', angle=0.0, downsamplef=1)

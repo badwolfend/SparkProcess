@@ -2,3 +2,5 @@
 *.pyc
 Data/._Lightgate
 Data/._Quantaray
+*.jpg
+*.png

@@ -954,22 +954,27 @@ def trap(f, ys, i, I):
         intgr = intgr + h * f(k * h, y0, i, I[k])
     return intgr
 
-def find_zero_pad(line, ymin=100, air=False, to_show=False):
+def find_zero_pad(line, ymin=100, air=False, to_show=False, whole=False):
 
-    zind = find_zero_contour(line, ymin=ymin)
+    zind = find_zero_contour(line, ymin=ymin, delt=0.01)
 
-    if not air:
+    if whole:
+        newline = np.zeros_like(line)
+        zind = find_zero_contour(np.abs(line), ymin=zind+25, delt=0.6)
+        newline[:zind] = line[:zind]  
+    
+    elif not air:
         length = 10 # padding to put at the edge of the new line
         newline = np.zeros(zind+int(length/2)) # initialize the new line removing the negative values
         end=line[zind-int(length/2)]/np.arange(1, length) # Pad the boundary where the phase goes negative
         newline[-(length-1):]=end
         newline[:-(int(length/2) )] = line[:zind]
         # newline = newline[zind:]
-    else:
+    elif air:
         newline = np.zeros_like(line)
         newline[zind:]=line[zind:]
         zind = find_zero_contour(np.abs(line), ymin=zind+25, delt=0.6)
-        newline[zind:] = 0
+        newline[zind:] = 0     
 
     if to_show:
         plot_one_line(y=line, f_name="original", to_show=False)
@@ -986,6 +991,10 @@ def find_zero_contour(line, ymin=100, delt=0.001):
 
 def find_val_contour(line, ymin=100, delt=0.001, val=1):
     zind = np.where(line[ymin:] <=val+delt)[0][0]+ymin
+    return zind
+
+def find_val_contour2(line, ymin=100, delt=0.001, val=1):
+    zind = np.where(np.abs(line[ymin:]-val) <= delt)[0][0]+ymin
     return zind
 
 def generate_fft_mask(fftxcoords, fftycoords, F_ps, F_s, typ='box'):
