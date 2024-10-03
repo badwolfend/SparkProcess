@@ -172,6 +172,14 @@ if __name__ == '__main__':
     #         coords=(int(2000), int(800)), fftycoords=(int(800), int(840)), fftxcoords=(int(300), int(625)),
     #         not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
 
-      e_s, e_ps = main(fname='Quantaray/8_23_2024/00118_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
-            coords=(int(2000), int(800)), fftycoords=(int(810), int(830)), fftxcoords=(int(200), int(725)),
-            not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+    #   e_s, e_ps = main(fname='Quantaray/8_23_2024/00118_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
+    #         coords=(int(2000), int(2000+800)), fftycoords=(int(790), int(830)), fftxcoords=(int(470-150), int(470+150)),
+    #         not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+
+    # e_s, e_ps = main(fname='Quantaray/8_23_2024/00118_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
+    # coords=(int(2000), int(800)), fftycoords=(int(790), int(830)), fftxcoords=(int(470-150), int(470+150)),
+    # not_horizontal=True, typ='box', angle=0.0, downsamplef=1)
+
+    e_s, e_ps = main(fname='Quantaray/8_23_2024/00249_interferometer', fname_ps="Quantaray/8_23_2024/00015_interferometer", size=(936, 1732),
+    coords=(int(1930), int(800)), fftycoords=(int(790), int(830)), fftxcoords=(int(470-150), int(470+150)),
+    not_horizontal=True, typ='box', angle=0.0, downsamplef=1)

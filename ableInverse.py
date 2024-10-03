@@ -14,7 +14,7 @@ date = "8_23_2024"
 shot = "00118_interferometer"
 # shot = "00163_interferometer"
 # shot = "00208_interferometer"
-# shot = "00249_interferometer"
+shot = "00249_interferometer"
 f_name = "./Data/Quantaray/"+date+"/"+str(shot)+"_phasediff.npz"
 f_name_abi = "./Data/Quantaray/"+date+"/"+str(shot)+"_direct_n_4.npz"
 
@@ -27,11 +27,11 @@ n = 4
 
 ## Set order of Abel approximation and polynomial expansion of the phase ##
 npzfile = np.load(f_name)
-pdiff = -npzfile['arr_0'] # Let air be negative phase
+pdiff = npzfile['arr_0'] # Let air be negative phase
 
 ut.plot_one_thing(pdiff, "pdiff")
 # pdiffHalf = (wl*ncrit/np.pi)*pdiff[500:, 400:]
-pdiffHalf = pdiff[200:, 400:]
+pdiffHalf = -pdiff[200-200:, 400+77:]
 
 mean = np.mean(pdiffHalf[:,400:])
 print("mean: " +str(mean))

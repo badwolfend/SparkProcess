@@ -27,10 +27,10 @@ def compute_mass(n_density, r, z, particle_mass):
 #############################################################
 date = "8_23_2024"
 
-# shot = "00118_interferometer"
+shot = "00118_interferometer"
 # shot = "00163_interferometer"
 # shot = "00208_interferometer"
-shot = "00249_interferometer"
+# shot = "00249_interferometer"
 f_name = "./Data/Quantaray/"+date+"/"+str(shot)+"_phasediff.npz"
 f_name_abi = "./Data/Quantaray/"+date+"/"+str(shot)+"_direct_Ne.npz"
 f_name_abi = "./Data/Quantaray/"+date+"/"+str(shot)+"_direct_n_4.npz"
@@ -78,7 +78,7 @@ nN2Only[positive_mask] = nN2[positive_mask]/multp
 # nAirOnly[~positive_mask] = (-1*multN2*nN2[~positive_mask] + nair0)
 nAirOnly[~positive_mask] = ((-1 * multN2 * nN2[~positive_mask] + nair0 - 1)) * Nair / (nair0 - 1)
 
-mask_shock = nAirOnly > 1.2*Nair
+mask_shock = nAirOnly > 1.01*Nair
 # mask_shock = nAirOnly > 0
 
 nAirShockOnly[mask_shock] = nAirOnly[mask_shock]
@@ -91,8 +91,8 @@ z = np.arange(nz) * dx
 
 # Compute the mass of the plasma
 vtravel = 12 # km/s 118
-vtravel = 9 # km/s 118
-vtravel = 6 # km/s 249
+# vtravel = 9 # km/s 163
+# vtravel = 6 # km/s 249
 vtravel = vtravel * 1000 # m/s
 
 mass = compute_mass(nN2Only, r, z, m_N)
